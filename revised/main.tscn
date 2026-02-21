@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cij0j6daaq6qv"]
+
+[ext_resource type="Script" uid="uid://bxnn2gu8bfg5l" path="res://revised/main.gd" id="1_d7c0n"]
+[ext_resource type="PackedScene" uid="uid://4x8yiduc4yn8" path="res://revised/bird.tscn" id="2_3yw3r"]
+[ext_resource type="Texture2D" uid="uid://d1gde2s7app00" path="res://Flappy Bird Assets/Background/Background5.png" id="2_d7c0n"]
+[ext_resource type="PackedScene" uid="uid://dli0hnx42c36k" path="res://revised/ground.tscn" id="4_08rxc"]
+[ext_resource type="PackedScene" uid="uid://bxfcm06t5nmsx" path="res://revised/pipe_spawner.tscn" id="5_i2b3x"]
+
+[node name="Main" type="Node" unique_id=1806438650]
+script = ExtResource("1_d7c0n")
+
+[node name="Background" type="TextureRect" parent="." unique_id=126040267]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d7c0n")
+expand_mode = 1
+
+[node name="PipeSpawner" parent="." unique_id=1454435454 instance=ExtResource("5_i2b3x")]
+
+[node name="Bird" parent="." unique_id=1862717231 instance=ExtResource("2_3yw3r")]
+z_index = 1
+position = Vector2(341, 141)
+collision_mask = 6
+rotation_speed = 1
+
+[node name="Ground" parent="." unique_id=1309923333 instance=ExtResource("4_08rxc")]
+z_index = -1
+position = Vector2(0, 451)
+
+[connection signal="bird_crashed" from="PipeSpawner" to="Bird" method="stop"]
+[connection signal="bird_crashed" from="PipeSpawner" to="Ground" method="stop"]
+[connection signal="score_point" from="PipeSpawner" to="." method="score_point"]
+[connection signal="start_game" from="Bird" to="." method="game_start"]
+[connection signal="bird_crashed" from="Ground" to="PipeSpawner" method="stop"]
+[connection signal="bird_crashed" from="Ground" to="Bird" method="stop"]
