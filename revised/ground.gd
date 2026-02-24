@@ -1,9 +1,7 @@
 extends Node2D
 class_name Ground
 
-signal bird_crashed
-
-@export var speed = -150
+var speed : float
 
 @onready var ground: Node2D = $"."
 @onready var g1: TileMapLayer = $ground1
@@ -41,11 +39,10 @@ func attach_to_end(item : TileMapLayer, ref : TileMapLayer) -> void:
 	var rect = item.get_used_rect()
 	var width = rect.size.x * tile_size.x * g1.scale.x
 	item.global_position.x = ref.global_position.x + width
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.collision_layer & 1:
-		bird_crashed.emit()
-		stop()
+#
+#func _on_body_entered(body: Node2D) -> void:
+	#if body.collision_layer & 1:
+		#print("Touched")
 
 func stop() -> void:
 	speed = 0
