@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ca2rpom107rxe"]
+
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/projectiles/projectile.gd" id="1_x3233"]
+[ext_resource type="Texture2D" uid="uid://cume073x4oasq" path="res://icon.svg" id="2_er3dr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er3dr"]
+size = Vector2(120, 116)
+
+[node name="Obstacle" type="Area2D" unique_id=612456431]
+script = ExtResource("1_x3233")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1180145889]
+shape = SubResource("RectangleShape2D_er3dr")
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=2126552928]
+texture = ExtResource("2_er3dr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=559276333]
+position = Vector2(139, 0)
+
+[connection signal="body_entered" from="." to="." method="_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]
