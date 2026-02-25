@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4x8yiduc4yn8"]
 
 [ext_resource type="Script" uid="uid://dl03oncg5h4kk" path="res://revised/bird.gd" id="1_3018t"]
+[ext_resource type="Texture2D" uid="uid://b2o5wsmgo15ot" path="res://revised/assets/40px-Stun_icon.png" id="2_khpyk"]
 [ext_resource type="Texture2D" uid="uid://qjjlm1d3v874" path="res://Flappy Bird Assets/Player/DEATH.png" id="3_jxovk"]
 [ext_resource type="Texture2D" uid="uid://b7iscmrifw4qv" path="res://revised/assets/yuumi/yuumi_flap.png" id="3_kkldf"]
 [ext_resource type="Texture2D" uid="uid://py62m7fv44id" path="res://revised/assets/yuumi/yuumi_die.png" id="3_lb0df"]
@@ -1189,6 +1190,13 @@ stream_3/stream = ExtResource("10_2lgvf")
 
 [node name="Bird" type="CharacterBody2D" unique_id=1862717231]
 script = ExtResource("1_3018t")
+
+[node name="StunIndicator" type="Sprite2D" parent="." unique_id=1498861868]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+position = Vector2(33, -27)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_khpyk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66879278]
 scale = Vector2(2, 2)
