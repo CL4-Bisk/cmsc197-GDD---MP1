@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dsso5jls1e7ij"]
 
-[ext_resource type="Script" uid="uid://coc2sqttwcdo3" path="res://revised/projectiles/projectile_spawner.gd" id="1_7ti7o"]
-[ext_resource type="PackedScene" uid="uid://oni183b53oie" path="res://revised/projectiles/proj_ashe.tscn" id="2_gjkwo"]
-[ext_resource type="PackedScene" uid="uid://dd5tm1rcffif4" path="res://revised/projectiles/proj_ez.tscn" id="3_3brdm"]
+[ext_resource type="Script" uid="uid://coc2sqttwcdo3" path="res://revised/obstacles/projectile_spawner.gd" id="1_7ti7o"]
+[ext_resource type="PackedScene" uid="uid://oni183b53oie" path="res://revised/obstacles/proj_ashe.tscn" id="2_gjkwo"]
+[ext_resource type="PackedScene" uid="uid://dd5tm1rcffif4" path="res://revised/obstacles/proj_ez.tscn" id="3_3brdm"]
 
 [node name="ProjectileSpawner" type="Node" unique_id=1025948843]
 script = ExtResource("1_7ti7o")
@@ -15,4 +15,4 @@ max_spawn_interval = 2.0
 position = Vector2(850, 450)
 
 [node name="SkyR" type="Marker2D" parent="." unique_id=185257326]
-position = Vector2(850, 39)
+position = Vector2(850, 15)

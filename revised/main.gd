@@ -3,12 +3,13 @@ class_name Main
 
 @onready var screensize := get_viewport().get_visible_rect().size
 @onready var bird: Bird = $Bird
-@onready var spawner: ProjectileSpawner = $ProjectileSpawner
+@onready var p_spawner: ProjectileSpawner = $ProjectileSpawner
+@onready var o_spawner: OneShotSpawner = $OneShotSpawner
 @onready var ground: Ground = $Ground
 
 @onready var gold_gain: Timer = $GoldGain
-@onready var progress_bar: ProgressBar = $ProgressBar
 @onready var gold_counter: Label = $GoldCounter
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 @export var scroll_speed := 100.0
 @onready var background: Parallax2D = $Background
@@ -22,14 +23,17 @@ func _ready() -> void:
 	
 	ground.speed = -scroll_speed
 	
-	spawner.bird_stunned.connect(bird.stun)
-	spawner.bird_hurt.connect(bird.change_health)
+	p_spawner.bird_stunned.connect(bird.stun)
+	p_spawner.bird_hurt.connect(bird.change_health)
+	
+	o_spawner.bird_kill.connect(bird.stop)
 	
 	gold_gain.timeout.connect(gain_gold)
 
 func game_start() -> void:
 	progress_bar.show()
-	spawner.start()
+	p_spawner.start()
+	o_spawner.start()
 	gold_gain.start()
 
 func gain_gold() -> void:

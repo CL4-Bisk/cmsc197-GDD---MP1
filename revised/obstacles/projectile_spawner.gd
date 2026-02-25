@@ -8,7 +8,6 @@ signal bird_hurt
 @export var max_spawn_interval := 3.0
 
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var ground_r: Marker2D = $GroundR
 
 var bird_level := 0
 

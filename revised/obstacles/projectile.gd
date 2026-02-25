@@ -4,7 +4,7 @@ class_name Projectile
 signal bird_hurt
 signal bird_stun
 
-@export var speed := 200
+@export var speed := 200.0
 @export var delete_on_collide := false
 @export var damage_amount := 10.0
 @export var stun_duration := 0.0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://oni183b53oie"]
 
-[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/projectiles/projectile.gd" id="1_meatm"]
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_meatm"]
 [ext_resource type="Texture2D" uid="uid://cr67h3xf7i5s" path="res://revised/assets/obstacles/ashe.png" id="2_up5f0"]
 [ext_resource type="AudioStream" uid="uid://cax22f3vtev3g" path="res://revised/assets/obstacles/sfx/ashe_fire.wav" id="3_mf5ag"]
 [ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/sfx/ashe_hit.wav" id="4_r0b70"]
@@ -64,7 +64,7 @@ speed = 500
 delete_on_collide = true
 stun_duration = 1.5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1180145889]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_meatm")
 
