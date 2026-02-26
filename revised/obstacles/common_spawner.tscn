@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://coc2sqttwcdo3" path="res://revised/obstacles/common_spawner.gd" id="1_7ti7o"]
 [ext_resource type="PackedScene" uid="uid://oni183b53oie" path="res://revised/obstacles/proj_ashe.tscn" id="2_gjkwo"]
 [ext_resource type="PackedScene" uid="uid://dd5tm1rcffif4" path="res://revised/obstacles/proj_ez.tscn" id="3_3brdm"]
-[ext_resource type="PackedScene" uid="uid://dr171axyrm55b" path="res://revised/obstacles/proj_soraka.tscn" id="4_gf4e6"]
+[ext_resource type="PackedScene" uid="uid://dkni3hgs567ti" path="res://revised/obstacles/proj_ice_wall.tscn" id="4_gf4e6"]
+[ext_resource type="PackedScene" uid="uid://c0l0x6hk6x627" path="res://revised/obstacles/proj_trap.tscn" id="5_wx3ao"]
 
 [node name="CommonSpawner" type="Node" unique_id=1025948843]
 script = ExtResource("1_7ti7o")
-projectiles = Array[PackedScene]([ExtResource("3_3brdm"), ExtResource("2_gjkwo"), ExtResource("4_gf4e6")])
+projectiles = Array[PackedScene]([ExtResource("3_3brdm"), ExtResource("2_gjkwo"), ExtResource("4_gf4e6"), ExtResource("5_wx3ao")])
 max_spawn_interval = 2.0
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=865410030]

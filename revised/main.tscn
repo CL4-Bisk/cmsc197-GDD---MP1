@@ -3,9 +3,25 @@
 [ext_resource type="Script" uid="uid://bxnn2gu8bfg5l" path="res://revised/main.gd" id="1_d7c0n"]
 [ext_resource type="PackedScene" uid="uid://4x8yiduc4yn8" path="res://revised/bird.tscn" id="2_3yw3r"]
 [ext_resource type="Texture2D" uid="uid://c7j33yeinewvk" path="res://revised/assets/background/periph_vista_a.srs_env_update.dds" id="2_i2b3x"]
+[ext_resource type="PackedScene" uid="uid://dj0pvvdyikqgk" path="res://revised/ui.tscn" id="3_bn2kn"]
 [ext_resource type="PackedScene" uid="uid://dli0hnx42c36k" path="res://revised/ground.tscn" id="4_08rxc"]
+[ext_resource type="FontFile" uid="uid://3ytxcmedt1jl" path="res://revised/assets/SpiegelSansCd-9Black_TRIAL.woff2" id="4_878aa"]
 [ext_resource type="PackedScene" uid="uid://bytlqgwku5otp" path="res://revised/obstacles/unique_spawner.tscn" id="6_8vc6d"]
 [ext_resource type="PackedScene" uid="uid://dsso5jls1e7ij" path="res://revised/obstacles/common_spawner.tscn" id="6_p6npc"]
+[ext_resource type="Texture2D" uid="uid://1m5us7be3tqv" path="res://revised/assets/yuumi/yuumi_profile.png" id="7_8vc6d"]
+[ext_resource type="AudioStream" uid="uid://euo2q0bwdybv" path="res://revised/assets/obstacles/sfx/Yuumi, the Magical Cat  Champion Theme - League of Legends.mp3" id="9_as1g6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bn2kn"]
+font = ExtResource("4_878aa")
+font_size = 50
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_doykw"]
+font = ExtResource("4_878aa")
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node" unique_id=1806438650]
 script = ExtResource("1_d7c0n")
@@ -21,6 +37,26 @@ repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=757861559]
 texture = ExtResource("2_i2b3x")
+
+[node name="UI" parent="." unique_id=11208222 instance=ExtResource("3_bn2kn")]
+
+[node name="Title" type="Label" parent="UI" unique_id=1991642828]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 201.0
+offset_right = 562.0
+offset_bottom = 262.0
+text = "FLAPPY"
+label_settings = SubResource("LabelSettings_bn2kn")
+
+[node name="Label" type="Label" parent="UI" unique_id=1437807659]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 264.0
+offset_right = 462.0
+offset_bottom = 301.0
+text = "press SPACE to play"
+label_settings = SubResource("LabelSettings_doykw")
 
 [node name="Bird" parent="." unique_id=1862717231 instance=ExtResource("2_3yw3r")]
 z_index = 1
@@ -43,16 +79,26 @@ position = Vector2(0, 450)
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=631151321]
 visible = false
 custom_minimum_size = Vector2(200, 0)
-offset_left = 39.0
-offset_top = 28.0
-offset_right = 239.0
-offset_bottom = 55.0
+offset_left = 97.0
+offset_top = 15.0
+offset_right = 297.0
+offset_bottom = 42.0
 
 [node name="GoldCounter" type="Label" parent="." unique_id=415071391]
-offset_left = 41.0
-offset_top = 66.0
-offset_right = 81.0
-offset_bottom = 89.0
+offset_left = 99.0
+offset_top = 48.0
+offset_right = 139.0
+offset_bottom = 71.0
+
+[node name="Yuumi" type="Sprite2D" parent="." unique_id=538376980]
+visible = false
+position = Vector2(56, 34)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_8vc6d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=780416749]
+stream = ExtResource("9_as1g6")
+autoplay = true
 
 [connection signal="bird_ded" from="Bird" to="." method="game_over"]
 [connection signal="bird_ded" from="Bird" to="Ground" method="stop"]
