@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyypow6y8iedb"]
 
-[ext_resource type="Script" uid="uid://gi02251aphwj" path="res://revised/obstacles/one_shot.gd" id="1_su6aj"]
+[ext_resource type="Script" uid="uid://gi02251aphwj" path="res://revised/obstacles/lux_laser.gd" id="1_su6aj"]
 [ext_resource type="Texture2D" uid="uid://ct2bwv8qas7d4" path="res://revised/assets/obstacles/lux-ult.png" id="1_u2hw3"]
 [ext_resource type="Texture2D" uid="uid://dsjyviqo1n461" path="res://revised/assets/obstacles/ezreal.png" id="2_7b0xy"]
 [ext_resource type="AudioStream" uid="uid://djhpwsunhgri5" path="res://revised/assets/obstacles/sfx/lux_fire0.wav" id="4_jqiqv"]
@@ -313,6 +313,7 @@ _data = {
 self_modulate = Color(1, 1, 1, 0.5)
 collision_layer = 4
 script = ExtResource("1_su6aj")
+is_lethal = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
 shape = SubResource("RectangleShape2D_er3dr")
@@ -334,5 +335,3 @@ volume_db = -5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=743774670]
 libraries/ = SubResource("AnimationLibrary_sahcf")
-
-[connection signal="body_entered" from="." to="." method="_hit"]
