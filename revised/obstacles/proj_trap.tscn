@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://c0l0x6hk6x627"]
+
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_rwo68"]
+[ext_resource type="Texture2D" uid="uid://djnvx0dhbd7vd" path="res://revised/assets/obstacles/trap.png" id="2_nygth"]
+[ext_resource type="AudioStream" uid="uid://tuyajadotu0e" path="res://revised/assets/obstacles/sfx/lux_fire3.wav" id="3_7uccl"]
+[ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/sfx/ashe_hit.wav" id="4_5h2gx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meatm"]
+radius = 16.0
+height = 112.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paqml"]
+atlas = ExtResource("2_nygth")
+region = Rect2(20, 226, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xwa6"]
+atlas = ExtResource("2_nygth")
+region = Rect2(163, 226, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5sdu"]
+atlas = ExtResource("2_nygth")
+region = Rect2(306, 226, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qud4r"]
+atlas = ExtResource("2_nygth")
+region = Rect2(20, 339, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbkvk"]
+atlas = ExtResource("2_nygth")
+region = Rect2(163, 339, 143, 113)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gg6ps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paqml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xwa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5sdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qud4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbkvk")
+}],
+"loop": true,
+"name": &"bite",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paqml")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0b70"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("3_7uccl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rop32"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("4_5h2gx")
+
+[node name="Trap" type="Area2D" unique_id=612456431]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_rwo68")
+speed = 500.0
+spawn_location = 3
+delete_on_collide = true
+damage_amount = 0.0
+stun_duration = 2.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_meatm")
+
+[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=852843579]
+position = Vector2(-2, -26)
+sprite_frames = SubResource("SpriteFrames_gg6ps")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.32335198
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1981946263]
+rect = Rect2(-116, -116, 232, 232)
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=887485679]
+stream = SubResource("AudioStreamRandomizer_r0b70")
+volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1895664724]
+stream = SubResource("AudioStreamRandomizer_rop32")
+volume_db = -5.0
+
+[connection signal="body_entered" from="." to="." method="_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]

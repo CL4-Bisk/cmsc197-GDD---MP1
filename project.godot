@@ -26,6 +26,10 @@ window/size/viewport_height=480
 window/size/resizable=false
 window/stretch/mode="viewport"
 
+[dotnet]
+
+project/assembly_name="FapBird"
+
 [input]
 
 flap={

@@ -7,7 +7,9 @@ signal bird_hit
 enum SpawnPositions {
 	LEFT_SIDE,
 	RIGHT_SIDE,
-	AERIAL
+	AERIAL,
+	GROUND,
+	WALL
 }
 @export var delete_on_collide := false
 @export var chase_bird := false
@@ -60,6 +62,10 @@ func setup_projectile(birdie : Node2D, left : Marker2D, right : Marker2D, ground
 			global_position.x = randf_range(left.global_position.x, right.global_position.x)
 			global_position.y = right.global_position.y
 			move_dir = Vector2.DOWN
+		SpawnPositions.GROUND:
+			global_position.y = ground.global_position.y
+			global_position.x = right.global_position.x
+			move_dir = Vector2.LEFT
 
 func _hit(body: Node2D) -> void:
 	$Hit.play()

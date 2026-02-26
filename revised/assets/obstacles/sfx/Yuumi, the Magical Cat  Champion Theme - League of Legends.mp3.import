@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://euo2q0bwdybv"
+path="res://.godot/imported/Yuumi, the Magical Cat  Champion Theme - League of Legends.mp3-f90b57aa67e71e3209916b701f3155ce.mp3str"
+
+[deps]
+
+source_file="res://revised/assets/obstacles/sfx/Yuumi, the Magical Cat  Champion Theme - League of Legends.mp3"
+dest_files=["res://.godot/imported/Yuumi, the Magical Cat  Champion Theme - League of Legends.mp3-f90b57aa67e71e3209916b701f3155ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
