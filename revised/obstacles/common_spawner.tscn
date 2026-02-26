@@ -3,19 +3,23 @@
 [ext_resource type="Script" uid="uid://coc2sqttwcdo3" path="res://revised/obstacles/common_spawner.gd" id="1_7ti7o"]
 [ext_resource type="PackedScene" uid="uid://oni183b53oie" path="res://revised/obstacles/proj_ashe.tscn" id="2_gjkwo"]
 [ext_resource type="PackedScene" uid="uid://dd5tm1rcffif4" path="res://revised/obstacles/proj_ez.tscn" id="3_3brdm"]
+[ext_resource type="PackedScene" uid="uid://dr171axyrm55b" path="res://revised/obstacles/proj_soraka.tscn" id="4_gf4e6"]
 
 [node name="CommonSpawner" type="Node" unique_id=1025948843]
 script = ExtResource("1_7ti7o")
-projectiles = Array[PackedScene]([ExtResource("3_3brdm"), ExtResource("2_gjkwo")])
+projectiles = Array[PackedScene]([ExtResource("3_3brdm"), ExtResource("2_gjkwo"), ExtResource("4_gf4e6")])
 max_spawn_interval = 2.0
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=865410030]
 
 [node name="Right" type="Marker2D" parent="." unique_id=738813678]
-position = Vector2(850, 15)
+position = Vector2(850, 25)
 
 [node name="Ground" type="Marker2D" parent="." unique_id=1203077850]
 position = Vector2(0, 450)
 
 [node name="Left" type="Marker2D" parent="." unique_id=1526706969]
-position = Vector2(-150, 15)
+position = Vector2(-150, 25)
+
+[node name="Sky" type="Marker2D" parent="." unique_id=155363389]
+position = Vector2(0, -20)
