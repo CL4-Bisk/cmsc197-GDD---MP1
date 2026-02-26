@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://4x8yiduc4yn8" path="res://revised/bird.tscn" id="2_3yw3r"]
 [ext_resource type="Texture2D" uid="uid://c7j33yeinewvk" path="res://revised/assets/background/periph_vista_a.srs_env_update.dds" id="2_i2b3x"]
 [ext_resource type="PackedScene" uid="uid://dli0hnx42c36k" path="res://revised/ground.tscn" id="4_08rxc"]
-[ext_resource type="PackedScene" uid="uid://bytlqgwku5otp" path="res://revised/obstacles/oneshot_spawner.tscn" id="6_8vc6d"]
-[ext_resource type="PackedScene" uid="uid://dsso5jls1e7ij" path="res://revised/obstacles/projectile_spawner.tscn" id="6_p6npc"]
+[ext_resource type="PackedScene" uid="uid://bytlqgwku5otp" path="res://revised/obstacles/unique_spawner.tscn" id="6_8vc6d"]
+[ext_resource type="PackedScene" uid="uid://dsso5jls1e7ij" path="res://revised/obstacles/common_spawner.tscn" id="6_p6npc"]
 
 [node name="Main" type="Node" unique_id=1806438650]
 script = ExtResource("1_d7c0n")
@@ -34,9 +34,9 @@ rotation_speed = 1
 z_index = -1
 position = Vector2(0, 450)
 
-[node name="ProjectileSpawner" parent="." unique_id=1025948843 instance=ExtResource("6_p6npc")]
+[node name="CommonSpawner" parent="." unique_id=1025948843 instance=ExtResource("6_p6npc")]
 
-[node name="OneShotSpawner" parent="." unique_id=2075623727 instance=ExtResource("6_8vc6d")]
+[node name="UniqueSpawner" parent="." unique_id=2075623727 instance=ExtResource("6_8vc6d")]
 
 [node name="GoldGain" type="Timer" parent="." unique_id=1178226377]
 
@@ -56,6 +56,6 @@ offset_bottom = 89.0
 
 [connection signal="bird_ded" from="Bird" to="." method="game_over"]
 [connection signal="bird_ded" from="Bird" to="Ground" method="stop"]
-[connection signal="bird_ded" from="Bird" to="ProjectileSpawner" method="game_stop"]
-[connection signal="bird_ded" from="Bird" to="OneShotSpawner" method="stop"]
+[connection signal="bird_ded" from="Bird" to="CommonSpawner" method="game_stop"]
+[connection signal="bird_ded" from="Bird" to="UniqueSpawner" method="stop"]
 [connection signal="start_game" from="Bird" to="." method="game_start"]

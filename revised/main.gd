@@ -3,8 +3,8 @@ class_name Main
 
 @onready var screensize := get_viewport().get_visible_rect().size
 @onready var bird: Bird = $Bird
-@onready var p_spawner: ProjectileSpawner = $ProjectileSpawner
-@onready var o_spawner: OneShotSpawner = $OneShotSpawner
+@onready var p_spawner: CommonSpawner = $CommonSpawner
+@onready var o_spawner: UniqueSpawner = $UniqueSpawner
 @onready var ground: Ground = $Ground
 
 @onready var gold_gain: Timer = $GoldGain
@@ -23,10 +23,11 @@ func _ready() -> void:
 	
 	ground.speed = -scroll_speed
 	
-	p_spawner.bird_stunned.connect(bird.stun)
-	p_spawner.bird_hurt.connect(bird.change_health)
+	p_spawner.parse(bird)
+	o_spawner.parse(bird)
 	
-	o_spawner.bird_kill.connect(bird.stop)
+	p_spawner.bird_hit.connect(bird_hit)
+	o_spawner.bird_hit.connect(bird_hit)
 	
 	gold_gain.timeout.connect(gain_gold)
 
@@ -48,3 +49,11 @@ func _process(delta: float) -> void:
 func game_over() -> void:
 	gold_gain.stop()
 	background.autoscroll.x = 0
+
+func bird_hit(is_lethal : bool, damage_amount : float = 0, stun_duration : float = 0):
+	if is_lethal:
+		bird.stop()
+	if damage_amount > 0:
+		bird.change_health(damage_amount)
+	if stun_duration > 0: 
+		bird.stun(stun_duration)
