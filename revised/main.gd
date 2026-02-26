@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	ground.speed = -scroll_speed
 	
-	p_spawner.parse(bird)
+	p_spawner.parse(bird, scroll_speed)
 	o_spawner.parse(bird)
 	
 	p_spawner.bird_hit.connect(bird_hit)
@@ -42,7 +42,7 @@ func gain_gold() -> void:
 	gold_counter.text = str(gold)
 	gold_gain.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	progress_bar.value = bird.health
 	progress_bar.max_value = bird.health_max
 
@@ -54,6 +54,6 @@ func bird_hit(is_lethal : bool, damage_amount : float = 0, stun_duration : float
 	if is_lethal:
 		bird.stop()
 	if damage_amount > 0:
-		bird.change_health(damage_amount)
+		bird.damage(damage_amount)
 	if stun_duration > 0: 
 		bird.stun(stun_duration)
