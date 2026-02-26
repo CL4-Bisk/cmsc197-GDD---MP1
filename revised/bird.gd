@@ -29,18 +29,18 @@ var touching_floor
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var s_ind: Sprite2D = $StunIndicator
 
-
 func _ready() -> void:
 	stun_timer.timeout.connect(can_move)
 	reset()
 	
 func can_move() -> void:
 	take_input = true
-	var t = create_tween()
-	t.tween_property(s_ind, "scale", s_ind.scale * 0.9, 0.1)
-	t.tween_property(s_ind, "modulate:a", 0.0, 0.1)
+	s_ind.modulate.a = 1.0
+	s_ind.create_tween().tween_property(s_ind, "scale", s_ind.scale * 0.5, 0.1)
+	s_ind.create_tween().tween_property(s_ind, "modulate:a", 0.0, 0.2)
 
 func reset() -> void:
+	s_ind.show()
 	health = health_max
 	is_alive = true
 	game_started = false
@@ -60,12 +60,12 @@ func _physics_process(delta: float) -> void:
 	
 	if !game_started: return
 	
-	health = clamp(health + (0.8 * delta), 0, health_max)
+	health = clamp(health + (0.3 * delta), 0, health_max)
 	
 	velocity.y += gravity * delta
 	velocity.y = min(velocity.y, max_fall_speed)
-	
 	global_position.y = clamp(global_position.y, 0, screensize.y)
+	
 	
 	if is_on_floor():
 		velocity.x = 0
@@ -101,11 +101,10 @@ func stun(duration : float) -> void:
 	if !is_alive: return
 	take_input = false
 	
+	s_ind.show()
 	s_ind.scale = Vector2(0.5, 0.5)
 	s_ind.modulate.a = 1.0
-	
-	var t = create_tween().set_loops()
-	t.tween_property(s_ind, "rotation", 15, 3).as_relative()
+	s_ind.create_tween().set_loops().tween_property(s_ind, "rotation", 15, 3).as_relative()
 	
 	stun_timer.stop()
 	stun_timer.start(duration)
@@ -133,14 +132,16 @@ func stop() -> void:
 	health = 0
 	take_input = false
 	is_alive = false
+	s_ind.hide()
 	
+	sprite.play("die")
+	rotation = 0
 	$CollisionShape2D.set_deferred("disabled", true)
+	await sprite.animation_finished
 	gravity = 0
 	velocity = Vector2.ZERO
 	
 	bird_ded.emit()
-	sprite.play("die")
-	rotation = 0
 
 func _on_exit() -> void:
 	change_health(health_max)
