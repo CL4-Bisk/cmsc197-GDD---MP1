@@ -1,5 +1,21 @@
 [gd_scene format=3 uid="uid://dj0pvvdyikqgk"]
 
+[ext_resource type="Script" uid="uid://d021klq32dpc2" path="res://revised/ui.gd" id="1_h37di"]
+[ext_resource type="Texture2D" uid="uid://1m5us7be3tqv" path="res://revised/assets/yuumi/yuumi_profile.png" id="2_2tqqt"]
+[ext_resource type="FontFile" uid="uid://3ytxcmedt1jl" path="res://revised/assets/SpiegelSansCd-9Black_TRIAL.woff2" id="3_2tqqt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ui7g"]
+font = ExtResource("3_2tqqt")
+font_size = 50
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s78bc"]
+font = ExtResource("3_2tqqt")
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="UI" type="Control" unique_id=11208222]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +23,150 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h37di")
+
+[node name="HUD" type="Control" parent="." unique_id=566658285]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=274935314]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer" unique_id=291239520]
+layout_mode = 2
+
+[node name="Sprite" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer" unique_id=80071682]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_2tqqt")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer" unique_id=44754670]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GoldCount" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1912850306]
+layout_mode = 2
+text = "Gold"
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1547380965]
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="HealthAmount" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer/HealthBar" unique_id=1084930650]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -11.5
+offset_right = 18.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
+[node name="XPBar" type="ProgressBar" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer" unique_id=56722131]
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="Amount" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer/XPBar" unique_id=266838579]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -11.5
+offset_right = 18.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
+[node name="TitleScreen" type="Control" parent="." unique_id=1667760668]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen" unique_id=662977223]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/MarginContainer" unique_id=164385610]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Title" type="Label" parent="TitleScreen/MarginContainer/VBoxContainer" unique_id=677045224]
+layout_mode = 2
+text = "Yuumi"
+label_settings = SubResource("LabelSettings_1ui7g")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="TitleScreen/MarginContainer/VBoxContainer" unique_id=646086104]
+layout_mode = 2
+text = "press SPACE to play"
+label_settings = SubResource("LabelSettings_s78bc")
+horizontal_alignment = 1
+
+[node name="GameOver" type="Control" parent="." unique_id=1024599379]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver" unique_id=1189429259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/MarginContainer" unique_id=1797863821]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Title" type="Label" parent="GameOver/MarginContainer/VBoxContainer" unique_id=1865924726]
+layout_mode = 2
+text = "You have been slain!"
+label_settings = SubResource("LabelSettings_1ui7g")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="GameOver/MarginContainer/VBoxContainer" unique_id=885147929]
+layout_mode = 2
+text = "press 'F' to play again"
+label_settings = SubResource("LabelSettings_s78bc")
+horizontal_alignment = 1
