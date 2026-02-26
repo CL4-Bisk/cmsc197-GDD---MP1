@@ -68,19 +68,23 @@ stream_1/stream = ExtResource("7_cukjh")
 [node name="TrueshotBarrage" type="Area2D" unique_id=612456431]
 scale = Vector2(2, 2)
 script = ExtResource("1_vsafs")
-speed = 600
+speed = 550.0
+spawn_location = 1
+chase_duration = 3.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
 position = Vector2(-1.25, 0)
 shape = SubResource("RectangleShape2D_er3dr")
 
 [node name="Texture" type="AnimatedSprite2D" parent="." unique_id=852843579]
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_gg6ps")
 autoplay = "default"
-frame_progress = 0.7661469
+frame = 2
+frame_progress = 0.3797427
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=559276333]
-position = Vector2(72, 0)
+rect = Rect2(-116, -116, 232, 232)
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1567682807]
 stream = SubResource("AudioStreamRandomizer_v7ajb")
