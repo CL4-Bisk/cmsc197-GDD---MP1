@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3nwh6l8ux574"
+path="res://.godot/imported/cait_fire (1).wav-61720f2ef77dd01b0eb5d7fa374d4707.sample"
+
+[deps]
+
+source_file="res://revised/assets/obstacles/cait/cait_fire (1).wav"
+dest_files=["res://.godot/imported/cait_fire (1).wav-61720f2ef77dd01b0eb5d7fa374d4707.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

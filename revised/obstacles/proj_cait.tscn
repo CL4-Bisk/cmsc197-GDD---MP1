@@ -1,32 +1,36 @@
 [gd_scene format=3 uid="uid://c0l0x6hk6x627"]
 
-[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_rwo68"]
-[ext_resource type="Texture2D" uid="uid://djnvx0dhbd7vd" path="res://revised/assets/obstacles/trap.png" id="2_nygth"]
-[ext_resource type="AudioStream" uid="uid://tuyajadotu0e" path="res://revised/assets/obstacles/sfx/lux_fire3.wav" id="3_7uccl"]
-[ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/sfx/ashe_hit.wav" id="4_5h2gx"]
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_px8p4"]
+[ext_resource type="Texture2D" uid="uid://djnvx0dhbd7vd" path="res://revised/assets/obstacles/trap.png" id="2_34qqi"]
+[ext_resource type="AudioStream" uid="uid://3nwh6l8ux574" path="res://revised/assets/obstacles/cait/cait_fire (1).wav" id="3_ttqk3"]
+[ext_resource type="AudioStream" uid="uid://dr08vn3ep5d6e" path="res://revised/assets/obstacles/cait/cait_fire (2).wav" id="4_hd6i6"]
+[ext_resource type="AudioStream" uid="uid://cgwin3shtvehl" path="res://revised/assets/obstacles/cait/cait_fire (3).wav" id="5_4od4r"]
+[ext_resource type="AudioStream" uid="uid://dvkyyv15msf86" path="res://revised/assets/obstacles/cait/cait_fire (4).wav" id="6_sdsl4"]
+[ext_resource type="AudioStream" uid="uid://dv6fvfsgg2xw" path="res://revised/assets/obstacles/cait/cait_hit (1).wav" id="7_c4jej"]
+[ext_resource type="AudioStream" uid="uid://cn6yu41fkelnq" path="res://revised/assets/obstacles/cait/cait_hit (2).wav" id="8_ujmun"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meatm"]
 radius = 16.0
 height = 112.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_paqml"]
-atlas = ExtResource("2_nygth")
+atlas = ExtResource("2_34qqi")
 region = Rect2(20, 226, 143, 113)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xwa6"]
-atlas = ExtResource("2_nygth")
+atlas = ExtResource("2_34qqi")
 region = Rect2(163, 226, 143, 113)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5sdu"]
-atlas = ExtResource("2_nygth")
+atlas = ExtResource("2_34qqi")
 region = Rect2(306, 226, 143, 113)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qud4r"]
-atlas = ExtResource("2_nygth")
+atlas = ExtResource("2_34qqi")
 region = Rect2(20, 339, 143, 113)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbkvk"]
-atlas = ExtResource("2_nygth")
+atlas = ExtResource("2_34qqi")
 region = Rect2(163, 339, 143, 113)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gg6ps"]
@@ -63,18 +67,22 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0b70"]
 playback_mode = 1
 random_pitch = 1.122462
-streams_count = 1
-stream_0/stream = ExtResource("3_7uccl")
+streams_count = 4
+stream_0/stream = ExtResource("3_ttqk3")
+stream_1/stream = ExtResource("4_hd6i6")
+stream_2/stream = ExtResource("5_4od4r")
+stream_3/stream = ExtResource("6_sdsl4")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rop32"]
 playback_mode = 1
 random_pitch = 1.122462
-streams_count = 1
-stream_0/stream = ExtResource("4_5h2gx")
+streams_count = 2
+stream_0/stream = ExtResource("7_c4jej")
+stream_1/stream = ExtResource("8_ujmun")
 
-[node name="Trap" type="Area2D" unique_id=612456431]
+[node name="YordleSnapTrap" type="Area2D" unique_id=612456431]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_rwo68")
+script = ExtResource("1_px8p4")
 speed = 500.0
 spawn_location = 3
 delete_on_collide = true
@@ -90,7 +98,6 @@ position = Vector2(-2, -26)
 sprite_frames = SubResource("SpriteFrames_gg6ps")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.32335198
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1981946263]
 rect = Rect2(-116, -116, 232, 232)
