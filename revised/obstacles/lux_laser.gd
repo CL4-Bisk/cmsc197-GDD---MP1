@@ -1,8 +1,8 @@
 extends Unique
 class_name LuxLaser
 
-func randomize_firing_position(left: Marker2D, right: Marker2D, ground: Marker2D) -> void:
-	global_position.y = randi_range(ground.global_position.y, left.global_position.y)
+func randomize_firing_position(_l: float, _r: float, g: float, s: float) -> void:
+	global_position.y = randf_range(g, s + 50)
 
 func fire() -> void:
 	show()

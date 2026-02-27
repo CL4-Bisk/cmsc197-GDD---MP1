@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bx77hc0wxh2ep"]
+
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_amnac"]
+[ext_resource type="Texture2D" uid="uid://dsjyviqo1n461" path="res://revised/assets/obstacles/ezreal.png" id="2_nytbg"]
+[ext_resource type="AudioStream" uid="uid://dclt76y78j6nl" path="res://revised/assets/obstacles/sfx/ez_fire0.wav" id="3_2y4si"]
+[ext_resource type="AudioStream" uid="uid://bfd8721psyqwy" path="res://revised/assets/obstacles/sfx/ez_fire3.wav" id="4_gg4yr"]
+[ext_resource type="AudioStream" uid="uid://donc50rcbtxqo" path="res://revised/assets/obstacles/sfx/ez_hit.wav" id="5_pc2ar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er3dr"]
+size = Vector2(28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akroa"]
+atlas = ExtResource("2_nytbg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx0j0"]
+atlas = ExtResource("2_nytbg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ixfu"]
+atlas = ExtResource("2_nytbg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig2gd"]
+atlas = ExtResource("2_nytbg")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5fma"]
+atlas = ExtResource("2_nytbg")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gg6ps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akroa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx0j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ixfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig2gd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5fma")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntplc"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 2
+stream_0/stream = ExtResource("3_2y4si")
+stream_1/stream = ExtResource("4_gg4yr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v7ajb"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("5_pc2ar")
+
+[node name="RocketGrab" type="Area2D" unique_id=612456431]
+scale = Vector2(2, 2)
+collision_layer = 4
+priority = -2
+script = ExtResource("1_amnac")
+speed = 800.0
+delete_on_collide = true
+stun_duration = 5.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=559276333]
+rect = Rect2(-252, -167, 504, 334)
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
+position = Vector2(-1.25, 0)
+shape = SubResource("RectangleShape2D_er3dr")
+
+[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=852843579]
+sprite_frames = SubResource("SpriteFrames_gg6ps")
+autoplay = "default"
+frame = 2
+frame_progress = 0.3797427
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=365607803]
+stream = SubResource("AudioStreamRandomizer_ntplc")
+volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1567682807]
+stream = SubResource("AudioStreamRandomizer_v7ajb")
+volume_db = -5.0
+
+[connection signal="body_entered" from="." to="." method="_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]
