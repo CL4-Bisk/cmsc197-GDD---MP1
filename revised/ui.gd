@@ -6,7 +6,8 @@ class_name UIManager
 @onready var xp_bar: ProgressBar = $HUD/MarginContainer/HBoxContainer/VBoxContainer/XPBar
 @onready var amount: Label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/XPBar/Amount
 @onready var title_screen: Control = $TitleScreen
-@onready var gold_count: Label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/GoldCount
+@onready var gold_count: Label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/GoldCount
+@onready var level: Label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level
 
 func game_start() -> void:
 	$TitleScreen.hide()
@@ -31,4 +32,7 @@ func update_exp(curr: float, maxim : float) -> void:
 	amount.text = "%s/%s" % [str(int(curr)), str(int(maxim))]
 
 func update_gold(val : int) -> void:
-	amount.text = str(val)
+	gold_count.text = str(val)
+
+func update_level(val: int) -> void:
+	level.text = str(val)
