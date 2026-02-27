@@ -3,7 +3,7 @@ class_name Bird
 
 signal start_game
 signal bird_ded
-signal bird_levelup
+signal bird_levelup(level: int)
 signal health_changed
 
 @export_category("Bird Values")
@@ -102,11 +102,10 @@ func _physics_process(delta: float) -> void:
 				rotate_bird()
 			velocity.y = min(velocity.y, max_fall_speed)
 			
-		BirdStatus.STUNNED:
+		BirdStatus.STUNNED, BirdStatus.DEAD:
 			velocity.y += gravity * delta
 			move_and_slide()
-		BirdStatus.DEAD:
-			return
+			if bird_condition == BirdStatus.DEAD: return
 	if bird_condition != BirdStatus.DEAD:
 		health = clamp(health + (0.3 * delta), 0, health_max)
 	
@@ -127,7 +126,7 @@ func gain_exp() -> void:
 		level = min(level + 1, 18)
 		xp = 0
 		xp_per_level += (5 * level)
-		bird_levelup.emit()
+		bird_levelup.emit(level)
 		$LevelUp.play()
 		exp_timer.start()
 		health_max += 10
@@ -181,6 +180,7 @@ func flop() -> void:
 	anim.stop()
 	if is_alive:
 		anim.play("flop")
+		gravity = gravity_power
 	else:
 		anim.play("dead")
 		gravity = 0
@@ -195,15 +195,16 @@ func stop() -> void:
 	exp_timer.stop()
 	stun_timer.stop()
 	health_regen.stop()
-	
+	gravity = 0
 	$Ded.play()
 	anim.play("die")
 	
 	rotation = 0
 	velocity = Vector2.ZERO
-	await anim.animation_finished
-	
 	bird_ded.emit() 
+	await anim.animation_finished
+	anim.play("dead")
+	gravity = gravity_power
 	get_tree().create_tween().kill()
 
 func _on_exit() -> void:
