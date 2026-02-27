@@ -26,7 +26,7 @@ The game is a platformer game inspired by the game, Flappy Bird. The character, 
 
 The character will have its attributes affected based on the type of projectiles it collides with. These projectiles are also based on their common (have little to moderate damage/stun durations) or unique (instant death) types.
 
-## The character increases its attributes by leveling up and then slowly heals itself by not getting hit.
+The character increases its attributes by leveling up and then slowly heals itself by not getting hit.
 
 ## ✨ Features
 
