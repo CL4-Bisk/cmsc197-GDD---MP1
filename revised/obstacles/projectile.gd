@@ -73,6 +73,7 @@ func setup_projectile(birdie : Node2D, l: float, r: float, g: float, s: float, s
 
 func _hit(_body: Node2D) -> void:
 	if _body.collision_layer != 1: return
+	if _body is Bird and (_body as Bird).bird_condition == Bird.BirdStatus.DEAD: return
 	$Hit.play()
 	bird_hit.emit(is_lethal, damage_amount, stun_duration)
 	chase_bird = false

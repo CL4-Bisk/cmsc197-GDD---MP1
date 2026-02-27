@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dd5tm1rcffif4" path="res://revised/obstacles/proj_ez.tscn" id="3_3brdm"]
 [ext_resource type="PackedScene" uid="uid://c1qgfsgnpawnj" path="res://revised/obstacles/proj_ice_wall.tscn" id="4_gf4e6"]
 [ext_resource type="PackedScene" uid="uid://dr171axyrm55b" path="res://revised/obstacles/proj_soraka.tscn" id="5_wx3ao"]
+[ext_resource type="PackedScene" uid="uid://c0l0x6hk6x627" path="res://revised/obstacles/proj_cait.tscn" id="6_6on8l"]
 
 [node name="CommonSpawner" type="Node" unique_id=1025948843]
 script = ExtResource("1_7ti7o")
-projectiles = Array[PackedScene]([ExtResource("3_3brdm"), ExtResource("2_gjkwo"), ExtResource("4_gf4e6"), ExtResource("5_wx3ao")])
+projectiles = Array[PackedScene]([ExtResource("5_wx3ao"), ExtResource("3_3brdm"), ExtResource("2_gjkwo"), ExtResource("4_gf4e6"), ExtResource("6_6on8l")])
 max_spawn_interval = 2.0
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=865410030]

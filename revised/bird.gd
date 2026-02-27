@@ -3,6 +3,7 @@ class_name Bird
 
 signal start_game
 signal bird_ded
+signal bird_levelup
 signal health_changed
 
 @export_category("Bird Values")
@@ -40,10 +41,12 @@ enum BirdStatus {
 @onready var s_ind: Sprite2D = $StunIndicator
 @onready var exp_timer: Timer = $ExpTimer
 @onready var hitbox: CollisionShape2D = $Hitbox
+@onready var health_regen: Timer = $HealthRegen
 
 func _ready() -> void:
 	stun_timer.timeout.connect(can_move)
 	exp_timer.timeout.connect(gain_exp)
+	health_regen.timeout.connect(func(): health = clamp(health + 0.3, 0, health_max))
 	reset()
 	
 func can_move() -> void:
@@ -56,12 +59,17 @@ func can_move() -> void:
 func reset() -> void:
 	bird_condition = BirdStatus.IDLE
 	collision_layer = 1
+	collision_mask = 2
+	
 	s_ind.show()
+	s_ind.modulate.a = 0.0
+	
 	level = 1
 	xp = 0
 	xp_per_level = 10
 	health_max = 100
 	health = health_max
+	
 	is_alive = true
 	velocity = Vector2.ZERO
 	position = screensize/2
@@ -74,6 +82,7 @@ func game_start() -> void:
 	gravity = gravity_power
 	sprite.stop()
 	exp_timer.start()
+	health_regen.start()
 	start_game.emit()
 
 func _physics_process(delta: float) -> void:
@@ -118,6 +127,7 @@ func gain_exp() -> void:
 		level = min(level + 1, 18)
 		xp = 0
 		xp_per_level += (5 * level)
+		bird_levelup.emit()
 		$LevelUp.play()
 		exp_timer.start()
 		health_max += 10
@@ -181,14 +191,18 @@ func stop() -> void:
 	bird_condition = BirdStatus.DEAD
 	is_alive = false
 	s_ind.hide()
+	health = 0
 	exp_timer.stop()
 	stun_timer.stop()
+	health_regen.stop()
+	
 	$Ded.play()
 	anim.play("die")
+	
 	rotation = 0
 	velocity = Vector2.ZERO
 	await anim.animation_finished
-	health = 0
+	
 	bird_ded.emit() 
 	get_tree().create_tween().kill()
 

@@ -60,10 +60,7 @@ func game_stop() -> void:
 		(timer as Timer).queue_free()
 	for g in get_children().filter(
 		func(f): 
-			if f is Projectile:
-				print(f.name)
-				print(f.collision_layer)
-				if f.collision_layer == 2:
+			if f is Projectile and f.collision_layer == 2:
 					return true
 			return false
 			):

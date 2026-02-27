@@ -29,6 +29,7 @@ func _ready() -> void:
 	p_spawner.bird_hit.connect(bird_hit)
 	o_spawner.bird_hit.connect(bird_hit)
 	gold_gain.timeout.connect(gain_gold)
+	bird.bird_levelup.connect(func(): ui.update_level(bird.level))
 	restart()
 
 func game_start() -> void:
