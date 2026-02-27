@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dj0pvvdyikqgk"]
 
-[ext_resource type="Script" uid="uid://d021klq32dpc2" path="res://ui.gd" id="1_h37di"]
+[ext_resource type="Script" uid="uid://d021klq32dpc2" path="res://scripts/ui.gd" id="1_h37di"]
 [ext_resource type="Texture2D" uid="uid://1m5us7be3tqv" path="res://assets/yuumi/yuumi_profile.png" id="2_2tqqt"]
 [ext_resource type="FontFile" uid="uid://3ytxcmedt1jl" path="res://assets/SpiegelSansCd-9Black_TRIAL.woff2" id="3_2tqqt"]
 
