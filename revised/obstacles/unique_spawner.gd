@@ -31,7 +31,7 @@ func spell_prep() -> void:
 	if !game_started: return
 	var r = randi_range(0, len(unique_spells) - 1)
 	var spell = unique_spells.get(r) as Unique
-	
+	$Warning.play()
 	spell.parse(bird)
 	spell.randomize_firing_position(left, right, ground, sky)
 	spell.bird_hit.connect(func(x, y, z): bird_hit.emit(x, y, z))
