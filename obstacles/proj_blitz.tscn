@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bx77hc0wxh2ep"]
+
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://obstacles/projectile.gd" id="1_amnac"]
+[ext_resource type="Texture2D" uid="uid://dv81nmox2wt4r" path="res://assets/obstacles/blitz/blitz-hook.png" id="2_ctct0"]
+[ext_resource type="AudioStream" uid="uid://ddheqvd1i0c4c" path="res://assets/obstacles/blitz/blitz_fire.wav" id="3_ctct0"]
+[ext_resource type="AudioStream" uid="uid://dh0xj88pq4bs3" path="res://assets/obstacles/blitz/blitz_hit.wav" id="4_amnac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er3dr"]
+size = Vector2(16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gg6ps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ctct0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntplc"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("3_ctct0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v7ajb"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("4_amnac")
+
+[node name="RocketGrab" type="Area2D" unique_id=612456431]
+scale = Vector2(2, 2)
+collision_layer = 4
+priority = -2
+script = ExtResource("1_amnac")
+speed = 1200.0
+delete_on_collide = true
+stun_duration = 5.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=559276333]
+rect = Rect2(-75.5, -32, 92, 64)
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_er3dr")
+
+[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=852843579]
+sprite_frames = SubResource("SpriteFrames_gg6ps")
+autoplay = "default"
+frame_progress = 0.3797427
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=365607803]
+stream = SubResource("AudioStreamRandomizer_ntplc")
+volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1567682807]
+stream = SubResource("AudioStreamRandomizer_v7ajb")
+volume_db = -5.0
+
+[connection signal="body_entered" from="." to="." method="_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]

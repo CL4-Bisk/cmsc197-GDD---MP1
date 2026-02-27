@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://c0l0x6hk6x627"]
+
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://obstacles/projectile.gd" id="1_px8p4"]
+[ext_resource type="Texture2D" uid="uid://djnvx0dhbd7vd" path="res://assets/obstacles/cait/trap.png" id="2_34qqi"]
+[ext_resource type="AudioStream" uid="uid://3nwh6l8ux574" path="res://assets/obstacles/cait/cait_fire (1).wav" id="3_ttqk3"]
+[ext_resource type="AudioStream" uid="uid://dr08vn3ep5d6e" path="res://assets/obstacles/cait/cait_fire (2).wav" id="4_hd6i6"]
+[ext_resource type="AudioStream" uid="uid://cgwin3shtvehl" path="res://assets/obstacles/cait/cait_fire (3).wav" id="5_4od4r"]
+[ext_resource type="AudioStream" uid="uid://dvkyyv15msf86" path="res://assets/obstacles/cait/cait_fire (4).wav" id="6_sdsl4"]
+[ext_resource type="AudioStream" uid="uid://dv6fvfsgg2xw" path="res://assets/obstacles/cait/cait_hit (1).wav" id="7_c4jej"]
+[ext_resource type="AudioStream" uid="uid://cn6yu41fkelnq" path="res://assets/obstacles/cait/cait_hit (2).wav" id="8_ujmun"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meatm"]
+radius = 16.0
+height = 112.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paqml"]
+atlas = ExtResource("2_34qqi")
+region = Rect2(20, 226, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xwa6"]
+atlas = ExtResource("2_34qqi")
+region = Rect2(163, 226, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5sdu"]
+atlas = ExtResource("2_34qqi")
+region = Rect2(306, 226, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qud4r"]
+atlas = ExtResource("2_34qqi")
+region = Rect2(20, 339, 143, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbkvk"]
+atlas = ExtResource("2_34qqi")
+region = Rect2(163, 339, 143, 113)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gg6ps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paqml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xwa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5sdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qud4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbkvk")
+}],
+"loop": true,
+"name": &"bite",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paqml")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0b70"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 4
+stream_0/stream = ExtResource("3_ttqk3")
+stream_1/stream = ExtResource("4_hd6i6")
+stream_2/stream = ExtResource("5_4od4r")
+stream_3/stream = ExtResource("6_sdsl4")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rop32"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 2
+stream_0/stream = ExtResource("7_c4jej")
+stream_1/stream = ExtResource("8_ujmun")
+
+[node name="YordleSnapTrap" type="Area2D" unique_id=612456431]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+script = ExtResource("1_px8p4")
+speed = 500.0
+spawn_location = 3
+delete_on_collide = true
+damage_amount = 0.0
+stun_duration = 2.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_meatm")
+
+[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=852843579]
+position = Vector2(-2, -26)
+sprite_frames = SubResource("SpriteFrames_gg6ps")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1981946263]
+rect = Rect2(-116, -116, 232, 232)
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=887485679]
+stream = SubResource("AudioStreamRandomizer_r0b70")
+volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1895664724]
+stream = SubResource("AudioStreamRandomizer_rop32")
+volume_db = -5.0
+
+[connection signal="body_entered" from="." to="." method="_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]
