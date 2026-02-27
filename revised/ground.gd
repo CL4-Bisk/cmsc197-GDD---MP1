@@ -32,17 +32,13 @@ func setup_notifier(layer : TileMapLayer, other) -> void:
 		rect.size.x * tile_size.x, 
 		rect.size.y * tile_size.y
 	)
-	
 	n.screen_exited.connect(func(): attach_to_end(layer, other))
 
 func attach_to_end(item : TileMapLayer, ref : TileMapLayer) -> void:
 	var rect = item.get_used_rect()
 	var width = rect.size.x * tile_size.x * g1.scale.x
 	item.global_position.x = ref.global_position.x + width
-#
-#func _on_body_entered(body: Node2D) -> void:
-	#if body.collision_layer & 1:
-		#print("Touched")
+
 
 func stop() -> void:
 	speed = 0

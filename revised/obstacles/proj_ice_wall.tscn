@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dup5or8eu0cxs"]
+[gd_scene format=3 uid="uid://c1qgfsgnpawnj"]
 
 [ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_b131q"]
 [ext_resource type="Texture2D" uid="uid://d2ndiwyu3h8i" path="res://revised/assets/obstacles/ice-wall.png" id="2_jbbyb"]
@@ -20,9 +20,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_paqml"]
-points = PackedVector2Array(84, 86, 83.99999, -92, 47.999996, -72, 43.999996, -58.000004, 29.999996, -52, 2, -58, -2, -36, -50, -45.999996, -90, -45.999996, -130, -37.999996, -120, -25.999994, -186, 8.000008, -154, 22.000006, -160, 32.000008, -94, 42.000004, -54, 46.000004, -18, 46, -24, 62, 52, 51.999996, 62.000004, 80)
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0b70"]
 playback_mode = 1
 random_pitch = 1.122462
@@ -35,24 +32,24 @@ random_pitch = 1.122462
 streams_count = 1
 stream_0/stream = ExtResource("4_slhda")
 
-[node name="IceWall" type="Area2D" unique_id=612456431]
+[node name="IceWall" type="StaticBody2D" unique_id=572771258]
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
 script = ExtResource("1_b131q")
 speed = 500.0
 spawn_location = 3
 damage_amount = 0.0
 
 [node name="Texture" type="AnimatedSprite2D" parent="." unique_id=1651710428]
-position = Vector2(26, -138)
 sprite_frames = SubResource("SpriteFrames_jbbyb")
+offset = Vector2(64, -128)
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
-position = Vector2(0, -84)
-rotation = 1.5707964
-shape = SubResource("ConvexPolygonShape2D_paqml")
+[node name="Hitbox" type="CollisionPolygon2D" parent="." unique_id=777962340]
+position = Vector2(64, -128)
+polygon = PackedVector2Array(-46, -134, -50, -70, -62, 14, -68, 104, -118, 128, -120, 154, 62, 148, 66, 126, 22, 54, 24, -58, 12, -130)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1981946263]
-rect = Rect2(-116, -116, 232, 232)
+rect = Rect2(-336, -440, 700, 556)
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=887485679]
 stream = SubResource("AudioStreamRandomizer_r0b70")
@@ -62,5 +59,4 @@ volume_db = -5.0
 stream = SubResource("AudioStreamRandomizer_rop32")
 volume_db = -5.0
 
-[connection signal="body_entered" from="." to="." method="_hit"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]

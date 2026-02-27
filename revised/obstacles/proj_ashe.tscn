@@ -59,6 +59,7 @@ stream_0/stream = ExtResource("4_r0b70")
 
 [node name="EnchantedArrow" type="Area2D" unique_id=612456431]
 scale = Vector2(2.5, 2)
+collision_layer = 4
 script = ExtResource("1_meatm")
 speed = 500.0
 spawn_location = 1
@@ -75,7 +76,7 @@ autoplay = "default"
 frame_progress = 0.83237934
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1981946263]
-rect = Rect2(-116, -116, 232, 232)
+rect = Rect2(-162.8, -162.79999, 325.6, 325.59998)
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=887485679]
 stream = SubResource("AudioStreamRandomizer_r0b70")

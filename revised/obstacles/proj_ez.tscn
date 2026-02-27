@@ -52,12 +52,6 @@ animations = [{
 "speed": 14.0
 }]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v7ajb"]
-playback_mode = 1
-random_pitch = 1.122462
-streams_count = 1
-stream_0/stream = ExtResource("3_43ydp")
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntplc"]
 playback_mode = 1
 random_pitch = 1.122462
@@ -65,8 +59,15 @@ streams_count = 2
 stream_0/stream = ExtResource("4_ebkow")
 stream_1/stream = ExtResource("7_cukjh")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v7ajb"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("3_43ydp")
+
 [node name="TrueshotBarrage" type="Area2D" unique_id=612456431]
 scale = Vector2(2, 2)
+collision_layer = 4
 script = ExtResource("1_vsafs")
 speed = 550.0
 spawn_location = 1
@@ -84,14 +85,14 @@ frame = 2
 frame_progress = 0.3797427
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=559276333]
-rect = Rect2(-116, -116, 232, 232)
-
-[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1567682807]
-stream = SubResource("AudioStreamRandomizer_v7ajb")
-volume_db = -5.0
+rect = Rect2(-252, -167, 504, 334)
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=365607803]
 stream = SubResource("AudioStreamRandomizer_ntplc")
+volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1567682807]
+stream = SubResource("AudioStreamRandomizer_v7ajb")
 volume_db = -5.0
 
 [connection signal="body_entered" from="." to="." method="_hit"]

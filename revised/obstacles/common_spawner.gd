@@ -23,6 +23,11 @@ func parse(birdie : Node2D, scroll : float) -> void:
 	bird = birdie
 	speed = scroll
 
+func clean() -> void:
+	for g in get_children().filter(
+		func(f): return f is Projectile):
+		g.queue_free()
+
 func start() -> void:
 	spawn_timer.start()
 
@@ -53,3 +58,13 @@ func game_stop() -> void:
 	for timer in get_children().filter(func(f): return f != spawn_timer and f is Timer):
 		(timer as Timer).stop()
 		(timer as Timer).queue_free()
+	for g in get_children().filter(
+		func(f): 
+			if f is Projectile:
+				print(f.name)
+				print(f.collision_layer)
+				if f.collision_layer == 2:
+					return true
+			return false
+			):
+		g.set_speed(0)

@@ -1,4 +1,4 @@
-extends Area2D
+extends CollisionObject2D
 class_name Projectile
 
 signal bird_hit
@@ -16,10 +16,16 @@ enum SpawnPositions {
 
 @export var aim_to_bird := false
 @export var damage_amount := 10.0
+@export var is_lethal := false
 @export var stun_duration := 0.0
+
+@onready var notif: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 var move_dir: Vector2
 var bird = null
+
+func set_speed(val : float) -> void:
+	speed = val
 
 func _ready() -> void:
 	$Fire.play()
@@ -46,7 +52,7 @@ func setup_projectile(birdie : Node2D, l: float, r: float, g: float, s: float, s
 	bird = birdie
 	match spawn_location:
 		SpawnPositions.LEFT_SIDE, SpawnPositions.RIGHT_SIDE:
-			global_position.y = randf_range(l, g)
+			global_position.y = randf_range(s, g)
 			if spawn_location == SpawnPositions.LEFT_SIDE:
 				global_position.x = l
 				move_dir = Vector2.RIGHT
@@ -65,10 +71,10 @@ func setup_projectile(birdie : Node2D, l: float, r: float, g: float, s: float, s
 	if !chase_bird: 
 		$Texture.flip_h = (move_dir == Vector2.LEFT)
 
-
 func _hit(_body: Node2D) -> void:
+	if _body.collision_layer != 1: return
 	$Hit.play()
-	bird_hit.emit(false, damage_amount, stun_duration)
+	bird_hit.emit(is_lethal, damage_amount, stun_duration)
 	chase_bird = false
 	
 	if delete_on_collide:

@@ -16,6 +16,7 @@ signal finished
 @export var stun_duration := 0.0
 
 var speed_scale := 1.0
+var bird : Bird = null
 
 func _ready() -> void:
 	hide()
@@ -23,9 +24,12 @@ func _ready() -> void:
 	speed_scale = d / warning_duration
 	body_entered.connect(hit)
 
-@abstract func randomize_firing_position(left: Marker2D, right: Marker2D, ground: Marker2D) -> void
+@abstract func randomize_firing_position(l: float, r: float, g: float, s: float) -> void
 
 @abstract func fire() -> void
 
-func hit(body: Node2D) -> void:
+func parse(birdie : Node2D) -> void:
+	bird = birdie
+
+func hit(_body: Node2D) -> void:
 	bird_hit.emit(is_lethal, damage_amount, stun_duration)
