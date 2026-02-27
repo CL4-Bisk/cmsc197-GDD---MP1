@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dr171axyrm55b"]
 
 [ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_4fqyh"]
-[ext_resource type="Texture2D" uid="uid://dudc6ndcf6dqq" path="res://revised/assets/obstacles/soraka-attack.png" id="2_4fqyh"]
-[ext_resource type="AudioStream" uid="uid://dtx0uyobc5ha8" path="res://revised/assets/obstacles/sfx/soraka_cast1.wav" id="3_nja8c"]
-[ext_resource type="AudioStream" uid="uid://bci7cjkcip1fa" path="res://revised/assets/obstacles/sfx/soraka_cast2.wav" id="4_qci7e"]
-[ext_resource type="AudioStream" uid="uid://dogrartu2vra4" path="res://revised/assets/obstacles/sfx/soraka_cast3.wav" id="5_ek56n"]
-[ext_resource type="AudioStream" uid="uid://dufwq2ft6t4f6" path="res://revised/assets/obstacles/sfx/soraka_hit1.wav" id="7_seeo6"]
-[ext_resource type="AudioStream" uid="uid://7blji5uo7awx" path="res://revised/assets/obstacles/sfx/soraka_hit2.wav" id="8_lnrue"]
-[ext_resource type="AudioStream" uid="uid://dqx6nawl5jl3a" path="res://revised/assets/obstacles/sfx/soraka_hit3.wav" id="9_frbis"]
-[ext_resource type="AudioStream" uid="uid://blr6gpngdsvbx" path="res://revised/assets/obstacles/sfx/soraka_hit4.wav" id="10_syyt4"]
+[ext_resource type="Texture2D" uid="uid://dudc6ndcf6dqq" path="res://revised/assets/obstacles/soraka/soraka-attack.png" id="2_4fqyh"]
+[ext_resource type="AudioStream" uid="uid://dtx0uyobc5ha8" path="res://revised/assets/obstacles/soraka/soraka_cast1.wav" id="3_nja8c"]
+[ext_resource type="AudioStream" uid="uid://bci7cjkcip1fa" path="res://revised/assets/obstacles/soraka/soraka_cast2.wav" id="4_qci7e"]
+[ext_resource type="AudioStream" uid="uid://dogrartu2vra4" path="res://revised/assets/obstacles/soraka/soraka_cast3.wav" id="5_ek56n"]
+[ext_resource type="AudioStream" uid="uid://dufwq2ft6t4f6" path="res://revised/assets/obstacles/soraka/soraka_hit1.wav" id="7_seeo6"]
+[ext_resource type="AudioStream" uid="uid://7blji5uo7awx" path="res://revised/assets/obstacles/soraka/soraka_hit2.wav" id="8_lnrue"]
+[ext_resource type="AudioStream" uid="uid://dqx6nawl5jl3a" path="res://revised/assets/obstacles/soraka/soraka_hit3.wav" id="9_frbis"]
+[ext_resource type="AudioStream" uid="uid://blr6gpngdsvbx" path="res://revised/assets/obstacles/soraka/soraka_hit4.wav" id="10_syyt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g35ul"]
 size = Vector2(9, 30)

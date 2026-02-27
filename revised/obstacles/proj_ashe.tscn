@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://oni183b53oie"]
 
 [ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_meatm"]
-[ext_resource type="Texture2D" uid="uid://cr67h3xf7i5s" path="res://revised/assets/obstacles/ashe.png" id="2_up5f0"]
-[ext_resource type="AudioStream" uid="uid://cax22f3vtev3g" path="res://revised/assets/obstacles/sfx/ashe_fire.wav" id="3_mf5ag"]
-[ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/sfx/ashe_hit.wav" id="4_r0b70"]
+[ext_resource type="Texture2D" uid="uid://cr67h3xf7i5s" path="res://revised/assets/obstacles/ashe/ashe.png" id="2_up5f0"]
+[ext_resource type="AudioStream" uid="uid://cax22f3vtev3g" path="res://revised/assets/obstacles/ashe/ashe_fire.wav" id="3_mf5ag"]
+[ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/ashe/ashe_hit.wav" id="4_r0b70"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meatm"]
 radius = 9.0

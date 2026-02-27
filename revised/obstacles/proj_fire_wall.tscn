@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://revised/obstacles/projectile.gd" id="1_geliw"]
 [ext_resource type="Texture2D" uid="uid://d2ndiwyu3h8i" path="res://revised/assets/obstacles/ice-wall.png" id="2_3llj7"]
-[ext_resource type="AudioStream" uid="uid://tuyajadotu0e" path="res://revised/assets/obstacles/sfx/lux_fire3.wav" id="3_52fm3"]
-[ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/sfx/ashe_hit.wav" id="4_wtub1"]
+[ext_resource type="AudioStream" uid="uid://tuyajadotu0e" path="res://revised/assets/obstacles/lux/lux_warn2.wav" id="3_52fm3"]
+[ext_resource type="AudioStream" uid="uid://bbicnq51ukkk5" path="res://revised/assets/obstacles/ashe/ashe_hit.wav" id="4_wtub1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b131q"]
 atlas = ExtResource("2_3llj7")
