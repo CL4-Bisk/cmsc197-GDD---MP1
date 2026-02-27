@@ -1,4 +1,4 @@
-s# 🎮 YUUMI
+# 🎮 YUUMI
 
 > A 2D Flappy Bird inspired fan-made game project developed in <strong>Godot Engine</strong> using <strong>GDScript</strong>. The game features a playable scene with elements and mechanics that are inspired from Flappy Bird and are all organized in scenes and scripts for core functionality. This repository demonstrates game logic, object interaction, and scene composition typical in Godot development.
 
@@ -51,10 +51,6 @@ Resurrect &emsp;&emsp; F
 ---
 
 ## 📸 Screenshots
-
-Add screenshots of: - Main menu - Gameplay - UI - Boss fight (if any)
-
-Example:
 
 ![Main Menu](screenshots/intro.jpg)
 ![Gameplay](screenshots/gameplay.jpg)
