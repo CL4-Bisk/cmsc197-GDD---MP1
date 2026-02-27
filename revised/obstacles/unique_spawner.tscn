@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bytlqgwku5otp"]
 
 [ext_resource type="Script" uid="uid://d4gs4fbuqxi1s" path="res://revised/obstacles/unique_spawner.gd" id="1_wfwxx"]
-[ext_resource type="PackedScene" uid="uid://cyypow6y8iedb" path="res://revised/obstacles/instantkill_lux.tscn" id="2_pbric"]
+[ext_resource type="PackedScene" uid="uid://cyypow6y8iedb" path="res://revised/obstacles/unique_lux.tscn" id="2_pbric"]
+[ext_resource type="PackedScene" uid="uid://cujluaw7dcosr" path="res://revised/obstacles/unique_blitz.tscn" id="3_n3hyv"]
 
 [node name="UniqueSpawner" type="Node" unique_id=1025948843]
 script = ExtResource("1_wfwxx")
@@ -17,9 +18,11 @@ position = Vector2(0, 450)
 [node name="Left" type="Marker2D" parent="." unique_id=402172762]
 position = Vector2(-150, 15)
 
+[node name="Sky" type="Marker2D" parent="." unique_id=1830017782]
+
 [node name="Ammunitions" type="Node" parent="." unique_id=1735208555]
 
+[node name="RocketGrab" parent="Ammunitions" unique_id=63565180 instance=ExtResource("3_n3hyv")]
+
 [node name="FinalSpark" parent="Ammunitions" unique_id=612456431 instance=ExtResource("2_pbric")]
-position = Vector2(373, 50)
-grounded = false
-warning_duration = 1.0
+position = Vector2(351, 0)
