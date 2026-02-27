@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dr171axyrm55b"]
+
+[ext_resource type="Script" uid="uid://dv1oru2d8biyp" path="res://obstacles/projectile.gd" id="1_4fqyh"]
+[ext_resource type="Texture2D" uid="uid://dudc6ndcf6dqq" path="res://assets/obstacles/soraka/soraka-attack.png" id="2_4fqyh"]
+[ext_resource type="AudioStream" uid="uid://dtx0uyobc5ha8" path="res://assets/obstacles/soraka/soraka_cast1.wav" id="3_nja8c"]
+[ext_resource type="AudioStream" uid="uid://bci7cjkcip1fa" path="res://assets/obstacles/soraka/soraka_cast2.wav" id="4_qci7e"]
+[ext_resource type="AudioStream" uid="uid://dogrartu2vra4" path="res://assets/obstacles/soraka/soraka_cast3.wav" id="5_ek56n"]
+[ext_resource type="AudioStream" uid="uid://dufwq2ft6t4f6" path="res://assets/obstacles/soraka/soraka_hit1.wav" id="7_seeo6"]
+[ext_resource type="AudioStream" uid="uid://7blji5uo7awx" path="res://assets/obstacles/soraka/soraka_hit2.wav" id="8_lnrue"]
+[ext_resource type="AudioStream" uid="uid://dqx6nawl5jl3a" path="res://assets/obstacles/soraka/soraka_hit3.wav" id="9_frbis"]
+[ext_resource type="AudioStream" uid="uid://blr6gpngdsvbx" path="res://assets/obstacles/soraka/soraka_hit4.wav" id="10_syyt4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g35ul"]
+size = Vector2(9, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4fqyh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4fqyh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_qci7e"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.4964168), 1.0663271, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_qci7e"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_nja8c"]
+colors = PackedColorArray(1, 0.96864426, 0.2474618, 1, 1, 0.81452996, 0.42634302, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntplc"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 3
+stream_0/stream = ExtResource("3_nja8c")
+stream_1/stream = ExtResource("4_qci7e")
+stream_2/stream = ExtResource("5_ek56n")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v7ajb"]
+playback_mode = 1
+random_pitch = 1.122462
+streams_count = 4
+stream_0/stream = ExtResource("7_seeo6")
+stream_1/stream = ExtResource("8_lnrue")
+stream_2/stream = ExtResource("9_frbis")
+stream_3/stream = ExtResource("10_syyt4")
+
+[sub_resource type="Animation" id="Animation_qci7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ek56n"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxv7a"]
+_data = {
+&"RESET": SubResource("Animation_qci7e"),
+&"default": SubResource("Animation_ek56n")
+}
+
+[node name="BananaAttack" type="Area2D" unique_id=612456431]
+light_mask = 0
+scale = Vector2(0.6, 0.6)
+collision_layer = 4
+script = ExtResource("1_4fqyh")
+speed = 100.0
+spawn_location = 2
+delete_on_collide = true
+chase_duration = 3.0
+aim_to_bird = true
+damage_amount = 4.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1180145889]
+position = Vector2(10.5, 0)
+shape = SubResource("RectangleShape2D_g35ul")
+
+[node name="Texture" type="AnimatedSprite2D" parent="." unique_id=882026464]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_4fqyh")
+
+[node name="Particles" type="CPUParticles2D" parent="Texture" unique_id=62836161]
+z_index = -1
+amount = 3
+texture = ExtResource("2_4fqyh")
+lifetime = 0.2
+draw_order = 1
+particle_flag_align_y = true
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_qci7e")
+color_ramp = SubResource("Gradient_qci7e")
+color_initial_ramp = SubResource("Gradient_nja8c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=559276333]
+rect = Rect2(-235, -235, 470, 470)
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=365607803]
+stream = SubResource("AudioStreamRandomizer_ntplc")
+volume_db = -5.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1567682807]
+stream = SubResource("AudioStreamRandomizer_v7ajb")
+volume_db = -5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=880768453]
+libraries/ = SubResource("AnimationLibrary_gxv7a")
+autoplay = &"default"
+
+[node name="GhostTimer" type="Timer" parent="." unique_id=266152874]
+wait_time = 0.1
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit"]

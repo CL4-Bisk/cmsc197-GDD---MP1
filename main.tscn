@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://cij0j6daaq6qv"]
+
+[ext_resource type="Script" uid="uid://bxnn2gu8bfg5l" path="res://main.gd" id="1_d7c0n"]
+[ext_resource type="PackedScene" uid="uid://4x8yiduc4yn8" path="res://bird.tscn" id="2_3yw3r"]
+[ext_resource type="Texture2D" uid="uid://wyh0i6o26lrr" path="res://assets/background/periph_vista_a.srs_env_update.png" id="2_pogd1"]
+[ext_resource type="PackedScene" uid="uid://dj0pvvdyikqgk" path="res://ui.tscn" id="3_bn2kn"]
+[ext_resource type="PackedScene" uid="uid://dli0hnx42c36k" path="res://ground.tscn" id="4_08rxc"]
+[ext_resource type="PackedScene" uid="uid://bytlqgwku5otp" path="res://obstacles/unique_spawner.tscn" id="6_8vc6d"]
+[ext_resource type="PackedScene" uid="uid://dsso5jls1e7ij" path="res://obstacles/common_spawner.tscn" id="6_p6npc"]
+[ext_resource type="AudioStream" uid="uid://euo2q0bwdybv" path="res://assets/obstacles/ost_0.mp3" id="9_as1g6"]
+[ext_resource type="AudioStream" uid="uid://dtcpa55e87eqq" path="res://assets/obstacles/ost_1.mp3" id="9_fq51x"]
+[ext_resource type="AudioStream" uid="uid://o4gl05vqp2n6" path="res://assets/announcer/ally_1.ogg" id="9_q242t"]
+[ext_resource type="AudioStream" uid="uid://b8dnwa4o4861a" path="res://assets/announcer/ally_2.ogg" id="10_pogd1"]
+[ext_resource type="AudioStream" uid="uid://b0ux487jjaoys" path="res://assets/obstacles/ost_2.mp3" id="10_y81jh"]
+[ext_resource type="AudioStream" uid="uid://72b5ye75rv72" path="res://assets/announcer/defeat.ogg" id="11_e14bs"]
+[ext_resource type="AudioStream" uid="uid://bhkf8pxi26ave" path="res://assets/announcer/discon.ogg" id="12_fq51x"]
+[ext_resource type="AudioStream" uid="uid://g4nswiugc1x1" path="res://assets/announcer/execute.ogg" id="13_y81jh"]
+[ext_resource type="AudioStream" uid="uid://30qjgqa5f0vw" path="res://assets/announcer/shut_1.ogg" id="14_nhnp7"]
+[ext_resource type="AudioStream" uid="uid://fmxavd5ke7dl" path="res://assets/announcer/shut_2.ogg" id="15_xshsb"]
+[ext_resource type="AudioStream" uid="uid://cp6744kjxhbm4" path="res://assets/announcer/slain_1.ogg" id="16_tfl6v"]
+[ext_resource type="AudioStream" uid="uid://cdwp3nk6ud0bi" path="res://assets/announcer/slain_2.ogg" id="17_pbv73"]
+[ext_resource type="Shader" uid="uid://uhoyqxrx4tyu" path="res://tint.gdshader" id="18_pogd1"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhnp7"]
+streams_count = 3
+stream_0/stream = ExtResource("9_as1g6")
+stream_1/stream = ExtResource("9_fq51x")
+stream_2/stream = ExtResource("10_y81jh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i71cy"]
+streams_count = 9
+stream_0/stream = ExtResource("9_q242t")
+stream_1/stream = ExtResource("10_pogd1")
+stream_2/stream = ExtResource("11_e14bs")
+stream_3/stream = ExtResource("12_fq51x")
+stream_4/stream = ExtResource("13_y81jh")
+stream_5/stream = ExtResource("14_nhnp7")
+stream_6/stream = ExtResource("15_xshsb")
+stream_7/stream = ExtResource("16_tfl6v")
+stream_7/weight = 3.0
+stream_8/stream = ExtResource("17_pbv73")
+stream_8/weight = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e14bs"]
+shader = ExtResource("18_pogd1")
+shader_parameter/tint_color = Color(0.6157466, 0.6157466, 0.6157466, 1)
+shader_parameter/saturation = 0.0
+shader_parameter/mix_amount = 0.5
+
+[node name="Main" type="Node" unique_id=1806438650]
+script = ExtResource("1_d7c0n")
+scroll_speed = 200.0
+
+[node name="Background" type="Parallax2D" parent="." unique_id=2136708675]
+z_index = -10
+scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, 246)
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(-5, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=757861559]
+texture = ExtResource("2_pogd1")
+
+[node name="Bird" parent="." unique_id=1862717231 instance=ExtResource("2_3yw3r")]
+z_index = 1
+position = Vector2(341, 141)
+collision_mask = 6
+jump_force = 300.0
+max_fall_speed = 800.0
+rotation_speed = 1
+
+[node name="Ground" parent="." unique_id=1309923333 instance=ExtResource("4_08rxc")]
+z_index = -1
+position = Vector2(0, 450)
+
+[node name="CommonSpawner" parent="." unique_id=1025948843 instance=ExtResource("6_p6npc")]
+
+[node name="UniqueSpawner" parent="." unique_id=2075623727 instance=ExtResource("6_8vc6d")]
+
+[node name="GoldGain" type="Timer" parent="." unique_id=1178226377]
+
+[node name="UI" parent="." unique_id=11208222 instance=ExtResource("3_bn2kn")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=780416749]
+stream = SubResource("AudioStreamRandomizer_nhnp7")
+volume_db = -10.0
+autoplay = true
+
+[node name="Break" type="Timer" parent="." unique_id=779365419]
+one_shot = true
+
+[node name="Announcer" type="AudioStreamPlayer" parent="." unique_id=1425406929]
+stream = SubResource("AudioStreamRandomizer_i71cy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=650218960]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1175043475]
+material = SubResource("ShaderMaterial_e14bs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="bird_ded" from="Bird" to="." method="game_over"]
+[connection signal="bird_ded" from="Bird" to="Ground" method="stop"]
+[connection signal="bird_ded" from="Bird" to="CommonSpawner" method="game_stop"]
+[connection signal="bird_ded" from="Bird" to="UniqueSpawner" method="stop"]
+[connection signal="bird_ded" from="Bird" to="UI" method="game_over"]
+[connection signal="bird_levelup" from="Bird" to="UI" method="update_level"]
+[connection signal="start_game" from="Bird" to="." method="game_start"]
