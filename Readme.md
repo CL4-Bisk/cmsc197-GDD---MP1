@@ -22,11 +22,11 @@
 
 ## 🕹 About the Game
 
-The game is a platformer game inspired by the game, Flappy Bird. The character, Yuumi, has to survive by leveling up and dodging all the projectiles that are coming at either side of the scene. Yuumi will then collect coins based on the distance travelled.
+The game is a platformer game inspired by the game, Flappy Bird. The character, Yuumi, has to survive by leveling up and dodging all the projectiles that are coming at either side of the scene. Yuumi will passively collect coins based on the distance travelled. The longer she survives, the more coins she earns.
 
 The character will have its attributes affected based on the type of projectiles it collides with. These projectiles are also based on their common (have little to moderate damage/stun durations) or unique (instant death) types.
 
-The character increases its attributes by leveling up and then slowly heals itself by not getting hit.
+Yuumi also passively regenerates any lost HP, albeit very slowly. After a certain duration, Yuumi levels up, increasing her own max HP, but also increasing the level of danger she encounters on her journey.
 
 ## ✨ Features
 
@@ -44,9 +44,9 @@ Action Key
 
 ---
 
-Jump/Start &emsp; Space
+Jump/Start &emsp;&emsp;&emsp;&emsp; Space
 
-Resurrect &emsp;&emsp; F
+Restart/Respawn &emsp;&emsp; F
 
 ---
 
@@ -134,3 +134,10 @@ project-folder/<br>
 - John Clyde Aparicio -- Game Developer
 
 ---
+
+## 📄 License
+This project is developed for educational purposes only as part of academic coursework requirements. It is not intended for commercial use.
+
+Some assets used in this project are inspired by existing works. All rights to original characters, designs, and referenced materials belong to their respective owners. This project does not claim ownership over any referenced or inspired content.
+
+Unauthorized commercial use, redistribution, or modification outside academic purposes is not permitted.
