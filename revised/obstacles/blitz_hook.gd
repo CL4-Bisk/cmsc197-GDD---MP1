@@ -16,7 +16,6 @@ func randomize_firing_position(l: float, r: float, g: float, s: float) -> void:
 	trail.set_point_position(0, Vector2.ZERO)
 	trail.set_point_position(1, Vector2.ZERO)
 	global_position.y = randf_range(g, s)
-	print(global_position.y)
 	f = hand.instantiate() as Projectile
 	f.setup_projectile(bird, l, r, global_position.y, global_position.y, 0)
 	f.hide()
@@ -37,7 +36,6 @@ func fire() -> void:
 
 	await $Timer.timeout
 	get_tree().current_scene.add_child(f)
-	print(f.global_position.y)
 	f.show()
 	f.notif.screen_exited.connect(
 		func(): 

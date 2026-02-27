@@ -20,6 +20,7 @@ enum GameState {
 	OVER
 }
 var gold := 0
+var highest_gold := 0
 
 func _ready() -> void:
 	bird.position = screensize/2
@@ -29,12 +30,12 @@ func _ready() -> void:
 	p_spawner.bird_hit.connect(bird_hit)
 	o_spawner.bird_hit.connect(bird_hit)
 	gold_gain.timeout.connect(gain_gold)
-	bird.bird_levelup.connect(func(): ui.update_level(bird.level))
 	restart()
 
 func game_start() -> void:
 	curr_state = GameState.GAME
 	ui.game_start()
+	ui.update_level(bird.level)
 	ui.update_health(bird.health, bird.health_max)
 	ui.update_exp(bird.xp, bird.xp_per_level)
 	p_spawner.start()
@@ -43,18 +44,26 @@ func game_start() -> void:
 
 func game_over() -> void:
 	curr_state = GameState.OVER
+	$Announcer.play()
+	$Break.start()
 	gold_gain.stop()
 	background.autoscroll.x = 0
-	ui.game_over()
+	if gold > highest_gold:
+		highest_gold = max(gold, highest_gold)
+		ui.update_best_gold(highest_gold)
+	$CanvasLayer.visible = true
 
 func restart() -> void:
 	curr_state = GameState.TITLE
+	$Break.start()
 	ui.show_title()
 	gold = 0
-	background.autoscroll.x = -5
+	ui.update_gold(gold)
+	background.autoscroll.x = - scroll_speed * 0.05
 	ground.speed = -scroll_speed
 	bird.reset()
 	p_spawner.clean()
+	$CanvasLayer.visible = false
 
 func gain_gold() -> void:
 	gold += randi_range(2, 4)
@@ -62,7 +71,7 @@ func gain_gold() -> void:
 	gold_gain.start()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("restart") && curr_state == GameState.OVER:
+	if Input.is_action_just_pressed("restart") && curr_state == GameState.OVER and $Break.time_left == 0:
 		restart()
 	if Input.is_action_just_pressed("jump") && curr_state == GameState.TITLE:
 		bird.game_start()
